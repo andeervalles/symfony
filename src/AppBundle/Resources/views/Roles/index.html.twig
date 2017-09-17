@@ -1,0 +1,34 @@
+{% extends "AppBundle::base.html.twig"  %}
+
+{% block body %}
+    <div class="page-header">
+        <h2>Mantenimiento de Roles</h2>
+    </div>
+
+    <!-- Comentario HTML -->
+    {# Comentario Twig #}
+
+    <table class="table">
+        <thead>
+            <th width="80">ID</th>
+            <th>NOMBRE</th>
+            <th width="80">&nbsp;</th>
+            <th width="80">&nbsp;</th>
+        </thead>
+        <tbody>
+        {% for rol in roles %}
+            <tr>
+                <td>{{ rol.id }}</td>
+                <td>{{ rol.nombre }}</td>
+                <td><a href="{{ path('app_roles_editar', {'id':rol.id}) }}" class="btn btn-warning">Editar</a></td>
+                <td><a href="{{ path('app_roles_eliminar', {'id':rol.id}) }}" class="btn btn-danger">Eliminar</a></td>
+            </tr>
+        {% endfor %}
+       </tbody>
+    </table>
+
+    <br/>
+
+    <a href="{{ path('app_roles_registrar') }}" class="btn btn-success">Nuevo</a>
+
+{% endblock %}

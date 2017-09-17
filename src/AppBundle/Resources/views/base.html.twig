@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8" />
+        <title>{% block title %}Welcome!{% endblock %}</title>
+        
+        <!-- Font-awesome -->
+        <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
+
+        <!-- jquery 3 -->
+        <script src="https://code.jquery.com/jquery-3.2.1.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin="anonymous"></script>
+
+        <!-- Latest compiled and minified CSS -->
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+
+        <!-- Optional theme -->
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css" integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous">
+
+        <!-- Latest compiled and minified JavaScript -->
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+
+        {% block stylesheets %}{% endblock %}
+		
+        {% block javascripts %}{% endblock %}
+    </head>
+    <body>
+        
+        <nav class="navbar navbar-inverse">
+			<div class="container-fluid">
+				<!-- logo -->
+				<div class="navbar-header">
+					<!-- boton para el menu desplegable -->
+					<button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#top-menu" aria-expanded="false">
+						<span class="sr-only">Toggle navigation</span>
+						<span class="icon-bar"></span>
+						<span class="icon-bar"></span>
+						<span class="icon-bar"></span>
+					</button>
+                                        <a class="navbar-brand" href="#"><img src="{{ asset('img/logo.svg') }}" alt="" height="24"></a>
+				</div>
+
+				<!-- menu de opciones -->
+				<div class="collapse navbar-collapse" id="top-menu">
+
+					<ul class="nav navbar-nav">
+						<li><a href="{{ path('app_home_index') }}">Inicio</a></li>
+						<li><a href="#">Contacto</a></li>
+
+						<!-- dropdown -->
+						<li class="dropdown">
+							<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Mantenimiento <span class="caret"></span></a>
+							<ul class="dropdown-menu">
+								<li><a href="{{ path('app_roles_index') }}">Roles</a></li>
+								<li><a href="#">Usuarios</a></li>
+								<li><a href="#">Categorías</a></li>
+								<li><a href="#">Productos</a></li>
+								<li><a href="#">Clientes</a></li>
+								<li role="separator" class="divider"></li>
+								<li><a href="#">Configuración</a></li>
+							</ul>
+						</li>
+
+						<li class="dropdown">
+							<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Reportes <span class="caret"></span></a>
+							<ul class="dropdown-menu">
+								<li><a href="#">Reporte 1</a></li>
+							</ul>
+						</li>
+
+					</ul>
+
+					<ul class="nav navbar-nav navbar-right">
+						<li><a href="#">Perfil</a></li>
+						<li><a href="#">Logout</a></li>
+					</ul>
+					<p class="navbar-text navbar-right">Erick Benites</p>
+
+				</div>
+
+			</div>
+        </nav>
+
+        <div class="container-fluid">
+
+                {% for flashMessage in app.session.flashbag.get('notice') %}
+                        <div class="alert alert-success">
+                                {{ flashMessage }}
+                        </div>
+                {% endfor %}
+
+
+                {% block body %}{% endblock %}
+
+        </div>
+
+    </body>
+</html>

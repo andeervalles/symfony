@@ -1,0 +1,18 @@
+{% extends "AppBundle::base.html.twig" %}
+{% block body %}
+    
+    <form action="{{ path('app_roles_editar', {'id': rol.id}) }}" method="POST">
+        <fieldset>
+            <legend>Edición de Rol</legend>
+            <div class="form-group">
+                <label for="nombre">Nombre</label>
+                <input type="text" id="nombre" name="nombre" maxlength="20" class="form-control"  value="{{ rol.nombre }}"/>
+            </div>
+            <div class="well">
+                <input type="submit" value="Guardar" class="btn btn-primary"/>
+                <a href="{{ path('app_roles_index') }}" class="btn btn-default">Cancelar</a>
+            </div>
+        </fieldset>
+    </form>
+
+{% endblock %}
